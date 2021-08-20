@@ -1,0 +1,27 @@
+{
+    "extends": ["eslint:recommended", "plugin:json/recommended"],
+    "parserOptions": {
+      "ecmaVersion": 8
+    },
+    "plugins": [
+      "json"
+    ],
+    "rules": {
+      "require-jsdoc": 0,
+      "indent": ["error", 2],
+      "max-len": ["error", {
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }],
+      "json/*": ["error", {"allowComments": true}]
+    },
+    "env": {
+      "node": true,
+      "mocha": true,
+      "es6": true
+    },
+    "globals": {
+      "expect": true,
+      "assert": true
+    }
+  }
