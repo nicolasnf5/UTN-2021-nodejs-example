@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  server:
+    build: ../server
+    container_name: server
+    hostname: server
+    ports:
+      - '3000:3000'
+    volumes:
+      - ../server:/usr/src/service/server
+      - /usr/src/service/server/node_modules
+    working_dir: /usr/src/service/server
+    command: 'yarn start'
