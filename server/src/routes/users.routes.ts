@@ -1,7 +1,6 @@
 import { Application, Request, Response } from "express";
 import CommonRoutes from "./common.routes";
 import shortid from 'shortid';
-import {log} from 'debug';
 
 class UserRoutes extends CommonRoutes {
   private users: any[];
@@ -10,13 +9,12 @@ class UserRoutes extends CommonRoutes {
     this.users = [];
   }
 
-  setUpRoutes() {
+  setUpRoutes(): Application {
     this.app.get('/users', (_req: Request, res: Response) => {
       return res.json({users: this.users});
     });
 
     this.app.post('/users', (req: Request, res: Response) => {
-      log(req.body);
       const user = req.body;
 
       if (user.email && user.password) {
@@ -46,6 +44,16 @@ class UserRoutes extends CommonRoutes {
       this.users[index] = user;
 
       return res.status(200);
+    });
+
+    this.app.delete('/users/:id', (req: Request, res: Response) => {
+      if (!req.params.id) {
+        return res.status(404);
+      }
+
+      this.users = this.users.filter(u => u.id !== req.params.id);
+
+      return res.status(204);
     });
 
     return this.app;
