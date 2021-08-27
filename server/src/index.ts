@@ -1,7 +1,7 @@
 import express from 'express';
-import CommonRoutes from './routes/common.routes';
+import CommonRoutes from './http/routes/common.routes';
 import cors from 'cors';
-import UserRoutes from './routes/users.routes';
+import UserRoutes from './http/routes/user.routes';
 import { log } from 'debug';
 import expressWinston from 'express-winston';
 import winston from 'winston';
@@ -18,7 +18,7 @@ const loggerOptions: expressWinston.LoggerOptions = {
 };
 
 if (!process.env.DEBUG) {
-  loggerOptions.meta = false; // when not debugging, log requests as one-liners
+    loggerOptions.meta = false; // when not debugging, log requests as one-liners
 }
 
 app.use(expressWinston.logger(loggerOptions));
@@ -26,7 +26,6 @@ app.use(expressWinston.logger(loggerOptions));
 const routes: Array<CommonRoutes> = [];
 app.use(cors());
 app.use(express.json());
-
 
 routes.push(new UserRoutes(app));
 
