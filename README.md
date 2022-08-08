@@ -12,4 +12,4 @@
 
 5. En caso de mostrar algun error ejecutar un `docker exec -it server sh` y ejecutar un `yarn install`
 
-6. Hola Como andas?
+6. Hola, como estás?
