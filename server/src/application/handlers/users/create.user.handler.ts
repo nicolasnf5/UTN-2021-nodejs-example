@@ -1,18 +1,19 @@
-import { User } from "../../../domain/entities/user.entity";
+import {User} from "../../../domain/entities/user.entity";
 import userRepository from "../../../infrastructure/repositories/user.repository";
-import { CreateUserCommand } from "../../commands/users/create.user.command";
+import {CreateUserCommand} from "../../commands/users/create.user.command";
 
 class CreateUserHandler {
-    async execute(command: CreateUserCommand) {
-        const user: User = {
-            email: command.email,
-            password: command.password,
-            firstName: command.firstName,
-            lastName: command.lastName
-        };
-        
-        await userRepository.save(user);
-    }
+  async execute(command: CreateUserCommand) {
+
+    const user = User.create(
+      command.getEmail(),
+      command.getPassword(),
+      command.getFirstName(),
+      command.getLastName()
+    );
+
+    await userRepository.save(user);
+  }
 }
 
 export default new CreateUserHandler();
