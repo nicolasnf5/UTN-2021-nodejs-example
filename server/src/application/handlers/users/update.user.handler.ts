@@ -10,6 +10,7 @@ class UpdateUserHandler {
         }
 
         user.changeEmail(command.getEmail());
+        user.changeNames(command.getFirstName(), command.getLastName());
 
         await userRepository.save(user);
     }

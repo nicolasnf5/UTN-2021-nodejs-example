@@ -45,6 +45,15 @@ export class User {
     // Add record event for listeners
   }
 
+  changeNames(firstName: string, lastName: string): void {
+    if (!this.firstName && !this.lastName) {
+      return;
+    }
+
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
   getId(): string {
     return this.id;
   }
