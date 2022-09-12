@@ -5,12 +5,12 @@ import {CreateUserCommand} from "../../commands/users/create.user.command";
 class CreateUserHandler {
   async execute(command: CreateUserCommand) {
 
-    const user: User = {
-      email: command.getEmail(),
-      password: command.getPassword(),
-      firstName: command.getFirstName(),
-      lastName: command.getLastName(),
-    };
+    const user = User.create(
+      command.getEmail(),
+      command.getPassword(),
+      command.getFirstName(),
+      command.getLastName()
+    );
 
     await userRepository.save(user);
   }

@@ -9,9 +9,8 @@ class UpdateUserHandler {
             throw new Error('User not found');
         }
 
-        user.email = command.getEmail();
-        user.firstName = command.getFirstName();
-        user.lastName = command.getLastName();
+        user.changeEmail(command.getEmail());
+        user.changeNames(command.getFirstName(), command.getLastName());
 
         await userRepository.save(user);
     }
