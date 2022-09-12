@@ -1,5 +1,5 @@
-import shortid from "shortid";
 import { User } from "../../domain/entities/user.entity";
+import uuid from 'uuid'
 
 class UserRepository {
     private users: User[];
@@ -20,11 +20,11 @@ class UserRepository {
 
     async save(user: User): Promise<void> {
         if (!user.id) {
-            user.id = shortid.generate();
+            user.id = uuid.v4();
             this.users.push(user);
         } else {
             this.users = this.users.map(function(u) {
-                return u.id === user.id ? user : u; 
+                return u.id === user.id ? user : u;
             });
         }
     }
