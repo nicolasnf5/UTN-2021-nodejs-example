@@ -46,7 +46,7 @@ export class User {
   }
 
   changeNames(firstName: string, lastName: string): void {
-    if (!this.firstName && !this.lastName) {
+    if (this.firstName && this.lastName) {
       return;
     }
 
