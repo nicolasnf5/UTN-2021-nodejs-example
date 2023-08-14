@@ -16,7 +16,7 @@ class UpdateUserAction {
       try {
         await updateUserHandler.execute(command);
       } catch (error) {
-        return res.status(404).json({message: error.message, m: ""});
+        return res.status(404).json({message: 'user not found'});
       }
 
       return res.status(200).json({message: "User updated"});
