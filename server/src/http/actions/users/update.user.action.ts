@@ -11,7 +11,6 @@ class UpdateUserAction {
         req.body.firstName,
         req.body.lastName,
         req.body.email,
-        req.body.password
       );
 
       try {
