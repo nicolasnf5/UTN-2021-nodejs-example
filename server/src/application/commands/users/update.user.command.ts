@@ -5,14 +5,12 @@ export class UpdateUserCommand {
   private readonly firstName: string;
   private readonly lastName: string;
   private readonly email: string;
-  private readonly password: string;
 
   constructor(
     id: string,
     firstName: string,
     lastName: string,
     email: string,
-    password: string,
   ) {
     if (!uuidValidate(id)) {
       throw new Error("id must be a valid uuid");
@@ -26,15 +24,10 @@ export class UpdateUserCommand {
       throw new Error("email must be specified");
     }
 
-    if (!password) {
-      throw new Error("password must be specified");
-    }
-
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.password = password;
   }
 
   getId() {
@@ -43,10 +36,6 @@ export class UpdateUserCommand {
 
   getEmail() {
     return this.email;
-  }
-
-  getPassword() {
-    return this.password;
   }
 
   getFirstName() {
