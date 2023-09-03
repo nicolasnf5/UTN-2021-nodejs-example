@@ -1,4 +1,5 @@
 import {User} from "../../domain/entities/user.entity";
+import {DatabaseException} from "../exceptions/DatabaseException";
 
 class UserRepository {
   private users: User[];
@@ -8,9 +9,13 @@ class UserRepository {
   }
 
   async findOneById(id: string): Promise<User | null> {
-    const user = this.users.find(u => u.getId() === id);
+    try {
+      const user = this.users.find(u => u.getId() === id);
 
-    return (user) ? user : null;
+      return (user) ? user : null;
+    } catch (e) {
+      throw new DatabaseException('error while fetching a user by id', e);
+    }
   }
 
   async findAll(): Promise<User[]> {

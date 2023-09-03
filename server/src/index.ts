@@ -4,8 +4,9 @@ import { log } from 'debug';
 import winston from 'winston';
 import expressWinston from 'express-winston';
 
-import UserRoutes from './http/routes/user.routes';
-import CommonRoutes from './http/routes/common.routes';
+import UserRoutes from './infrastructure/http/routes/user.routes';
+import CommonRoutes from './infrastructure/http/routes/common.routes';
+import expressErrorHandler from "./infrastructure/http/middlewares/ExpressErrorHandler";
 
 const app: express.Application = express();
 
@@ -30,6 +31,8 @@ app.use(cors());
 app.use(express.json());
 
 routes.push(new UserRoutes(app));
+
+app.use(expressErrorHandler.handle);
 
 app.listen(3000, () => {
   routes.forEach((route: CommonRoutes) => {

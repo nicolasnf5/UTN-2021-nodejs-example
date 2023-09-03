@@ -1,3 +1,5 @@
+import {ValidationError} from "../../exceptions/ValidationError";
+
 export class CreateUserCommand {
   private readonly email: string;
   private readonly password: string;
@@ -11,7 +13,7 @@ export class CreateUserCommand {
     lastName: string
   ) {
     if (!email || !password) {
-      throw new Error('Email and password are required');
+      throw new ValidationError('Email and password are required');
     }
 
     this.email = email;
