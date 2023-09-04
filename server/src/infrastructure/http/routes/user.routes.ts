@@ -7,7 +7,7 @@ import deleteUserAction from "../actions/users/delete.user.action";
 
 class UserRoutes extends CommonRoutes {
   constructor(app: Application) {
-    super(app, 'User');
+    super(app, 'user');
   }
 
   setUpRoutes(): Router {

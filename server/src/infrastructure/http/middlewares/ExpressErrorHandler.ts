@@ -15,7 +15,7 @@ export class ExpressErrorHandler {
         res.status(400).json({message: err.message});
         break;
       case ApplicationException.name:
-        res.status(400).json({message: err.message});
+        res.status(409).json({message: err.message});
         break;
       case InfrastructureException.name:
         console.log(
