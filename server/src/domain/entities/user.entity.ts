@@ -3,13 +3,13 @@ import {Nullable} from "../valueObjects/Nullable";
 
 export class User {
 
-  private id: string;
+  private readonly id: string;
   private firstName: Nullable<string>;
   private lastName: Nullable<string>;
   private email: string;
   private password: string;
 
-  constructor(
+  private constructor(
     id: string,
     email: string,
     password: string,
@@ -46,7 +46,7 @@ export class User {
   }
 
   changeNames(firstName: string, lastName: string): void {
-    if (this.firstName && this.lastName) {
+    if (!this.firstName || !this.lastName) {
       return;
     }
 

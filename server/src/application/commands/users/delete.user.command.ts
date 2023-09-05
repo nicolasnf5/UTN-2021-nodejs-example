@@ -1,4 +1,5 @@
 import uuidValidate from 'uuid-validate';
+import {ValidationError} from "../../exceptions/ValidationError";
 
 export class DeleteUserCommand {
   private readonly id: string;
@@ -7,11 +8,11 @@ export class DeleteUserCommand {
     id: string,
   ) {
     if (!id) {
-      throw new Error('id is required');
+      throw new ValidationError('id is required');
     }
 
     if (!uuidValidate(id)) {
-      throw new Error('uuid must be a valid uuid');
+      throw new ValidationError('uuid must be a valid uuid');
     }
 
     this.id = id;

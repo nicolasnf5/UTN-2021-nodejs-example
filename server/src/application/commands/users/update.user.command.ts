@@ -1,4 +1,5 @@
 import uuidValidate from "uuid-validate";
+import {ValidationError} from "../../exceptions/ValidationError";
 
 export class UpdateUserCommand {
   private readonly id: string;
@@ -13,15 +14,15 @@ export class UpdateUserCommand {
     email: string,
   ) {
     if (!uuidValidate(id)) {
-      throw new Error("id must be a valid uuid");
+      throw new ValidationError("id must be a valid uuid");
     }
 
     if (!firstName || !lastName) {
-      throw new Error("firstName and lastName must be specified");
+      throw new ValidationError("firstName and lastName must be specified");
     }
 
     if (!email) {
-      throw new Error("email must be specified");
+      throw new ValidationError("email must be specified");
     }
 
     this.id = id;

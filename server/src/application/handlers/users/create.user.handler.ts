@@ -4,7 +4,6 @@ import {CreateUserCommand} from "../../commands/users/create.user.command";
 
 class CreateUserHandler {
   async execute(command: CreateUserCommand) {
-
     const user = User.create(
       command.getEmail(),
       command.getPassword(),

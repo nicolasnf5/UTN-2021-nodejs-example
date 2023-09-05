@@ -1,10 +1,12 @@
 import express from 'express';
-import CommonRoutes from './http/routes/common.routes';
 import cors from 'cors';
-import UserRoutes from './http/routes/user.routes';
 import { log } from 'debug';
-import expressWinston from 'express-winston';
 import winston from 'winston';
+import expressWinston from 'express-winston';
+
+import UserRoutes from './infrastructure/http/routes/user.routes';
+import CommonRoutes from './infrastructure/http/routes/common.routes';
+import expressErrorHandler from "./infrastructure/http/middlewares/ExpressErrorHandler";
 
 const app: express.Application = express();
 
@@ -24,10 +26,13 @@ if (!process.env.DEBUG) {
 app.use(expressWinston.logger(loggerOptions));
 
 const routes: Array<CommonRoutes> = [];
+
 app.use(cors());
 app.use(express.json());
 
 routes.push(new UserRoutes(app));
+
+app.use(expressErrorHandler.handle);
 
 app.listen(3000, () => {
   routes.forEach((route: CommonRoutes) => {

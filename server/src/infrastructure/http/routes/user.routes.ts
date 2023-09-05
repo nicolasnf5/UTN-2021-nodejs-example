@@ -1,4 +1,4 @@
-import { Application } from "express";
+import {Application, Router} from "express";
 import listUsersAction from "../actions/users/list.users.action";
 import createUserAction from "../actions/users/create.user.action";
 import CommonRoutes from "./common.routes";
@@ -10,7 +10,7 @@ class UserRoutes extends CommonRoutes {
     super(app, 'user');
   }
 
-  setUpRoutes(): Application {
+  setUpRoutes(): Router {
     this.app.get('/users', listUsersAction.run);
 
     this.app.post('/users', createUserAction.run);
